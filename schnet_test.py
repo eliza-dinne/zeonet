@@ -59,7 +59,7 @@ np.random.shuffle(graphs)
 trainloader = DataLoader(graphs[:n_train], batch_size=32,shuffle=True)
 testloader = DataLoader(graphs[n_train:], batch_size=32,shuffle=True)
 
-epochs = 1
+epochs = 100
 
 optimizer = optim.AdamW(net.parameters())
 criterion = nn.HuberLoss()
