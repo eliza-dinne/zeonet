@@ -43,7 +43,7 @@ d1 = {'hidden_channels': hidden_channels, 'num_filters': hidden_channels, 'num_i
 #graph list creation
 graphs = []
 
-for zeo in ['TON']:
+for zeo in ['TON, MEL, DDR, FAU']:
     _graphs = create_graphs(zeo, triplets=False)
     graphs.extend(_graphs)
 
@@ -59,7 +59,7 @@ np.random.shuffle(graphs)
 trainloader = DataLoader(graphs[:n_train], batch_size=32,shuffle=True)
 testloader = DataLoader(graphs[n_train:], batch_size=32,shuffle=True)
 
-epochs = 1
+epochs = 100
 
 optimizer = optim.AdamW(net.parameters())
 criterion = nn.HuberLoss()
