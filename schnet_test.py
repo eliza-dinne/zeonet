@@ -43,7 +43,7 @@ d1 = {'hidden_channels': hidden_channels, 'num_filters': hidden_channels, 'num_i
 #graph list creation
 graphs = []
 
-for zeo in ['TON, MEL, DDR, FAU']:
+for zeo in ['TON, TON2, TONch, MEL, DDR, FAU, FAUch']:
     _graphs = create_graphs(zeo, triplets=False)
     graphs.extend(_graphs)
 
