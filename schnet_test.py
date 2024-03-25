@@ -59,7 +59,7 @@ np.random.shuffle(graphs)
 trainloader = DataLoader(graphs[:n_train], batch_size=32,shuffle=True)
 testloader = DataLoader(graphs[n_train:], batch_size=32,shuffle=True)
 
-epochs = 100
+epochs = 1
 
 optimizer = optim.AdamW(net.parameters())
 criterion = nn.HuberLoss()
@@ -104,7 +104,7 @@ for epoch in range(epochs):
 
     print(f'Epoch {epoch+1} test loss: {running_loss_test/(i+1)}')
 
-existing_folders = os.listdir('/Users/elizadinne/Desktop/uni/Physics_BEP/nn/saved_results/')
+existing_folders = os.listdir('/workspaces/zeonet-bep/saved_results')
 existing_folders = [int(i) for i in existing_folders]
 
 if len(existing_folders) == 0:
@@ -112,9 +112,9 @@ if len(existing_folders) == 0:
 else:
     next_dir = max(existing_folders) + 1
 
-os.makedirs(f'/Users/elizadinne/Desktop/uni/Physics_BEP/nn/saved_results/{next_dir}/')
-torch.save(net.state_dict(), f'/Users/elizadinne/Desktop/uni/Physics_BEP/nn/saved_results/{next_dir}/state_dict.py')
-with open(f'/Users/elizadinne/Desktop/uni/Physics_BEP/nn/saved_results/{next_dir}/param_dict.pkl', 'wb') as f:
+os.makedirs(f'/workspaces/zeonet-bep/saved_results/{next_dir}/')
+torch.save(net.state_dict(), f'/workspaces/zeonet-bep/saved_results{next_dir}/state_dict.py')
+with open(f'/workspaces/zeonet-bep/saved_results/{next_dir}/param_dict.pkl', 'wb') as f:
     pickle.dump(d1, f)
 
 
