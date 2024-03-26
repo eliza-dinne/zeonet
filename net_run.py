@@ -8,4 +8,6 @@ import os
 
 for ch in [32, 64, 128, 256]:
     for interactions in [2, 4, 6]:
-        os.system(f'python schnet_test.py --h {ch} --i {interactions}')
+        os.system(f'sbatch -p all --gres=gpu:1 train_zeonet')
+
+
