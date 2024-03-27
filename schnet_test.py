@@ -36,7 +36,7 @@ if __name__ == "__main__": #if file called, code below is executed
     graphs = []
 
     #'TON', 'TON2', 'TONch', 'MEL', 'DDR', 'FAU', 'FAUch', 'ITW', 'MFI', 'MOR', 'RHO'
-    for zeo in ['TON', 'TON2']:
+    for zeo in ['TON', 'TON2', 'TONch', 'MEL', 'DDR', 'FAU', 'FAUch', 'ITW', 'MFI', 'MOR', 'RHO']:
         _graphs = create_graphs(zeo, triplets=False)
         graphs.extend(_graphs)
 
@@ -52,7 +52,7 @@ if __name__ == "__main__": #if file called, code below is executed
     trainloader = DataLoader(graphs[:n_train], batch_size=32,shuffle=True)
     testloader = DataLoader(graphs[n_train:], batch_size=32,shuffle=True)
 
-    epochs = 1
+    epochs = 100
 
     optimizer = optim.AdamW(net.parameters())
     criterion = nn.HuberLoss()
