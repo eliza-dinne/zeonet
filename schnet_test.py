@@ -35,7 +35,8 @@ if __name__ == "__main__": #if file called, code below is executed
     #graph list creation
     graphs = []
 
-    for zeo in ['TON', 'TON2', 'TONch', 'MEL', 'DDR', 'FAU', 'FAUch']:
+    #'TON2', 'TONch', 'MEL', 'DDR', 'FAU', 'FAUch', 'ITW', 'MFI', 'MOR', 'RHO'
+    for zeo in ['MFI']:
         _graphs = create_graphs(zeo, triplets=False)
         graphs.extend(_graphs)
 
@@ -51,7 +52,7 @@ if __name__ == "__main__": #if file called, code below is executed
     trainloader = DataLoader(graphs[:n_train], batch_size=32,shuffle=True)
     testloader = DataLoader(graphs[n_train:], batch_size=32,shuffle=True)
 
-    epochs = 100
+    epochs = 1
 
     optimizer = optim.AdamW(net.parameters())
     criterion = nn.HuberLoss()
@@ -104,9 +105,9 @@ if __name__ == "__main__": #if file called, code below is executed
     else:
         next_dir = max(existing_folders) + 1
 
-    os.makedirs(f'/workspaces/zeonet-bep/saved_results/{next_dir}/')
-    torch.save(net.state_dict(), f'/workspaces/zeonet-bep/saved_results{next_dir}/state_dict.py')
-    with open(f'/workspaces/zeonet-bep/saved_results/{next_dir}/param_dict.pkl', 'wb') as f:
+    os.makedirs(f'/Users/elizadinne/Desktop/uni/Physics_BEP/zeonet-bep/saved_results/{next_dir}/')
+    torch.save(net.state_dict(), f'/Users/elizadinne/Desktop/uni/Physics_BEP/zeonet-bep/saved_results/{next_dir}/state_dict.py')
+    with open(f'/Users/elizadinne/Desktop/uni/Physics_BEP/zeonet-bep/saved_results/{next_dir}/param_dict.pkl', 'wb') as f:
         pickle.dump(d1, f)
 
 
