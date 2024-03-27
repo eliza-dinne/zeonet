@@ -8,6 +8,10 @@ import os
 
 for ch in [32]: #32, 64, 128, 256
     for interactions in [2]: #2, 4, 6
-        os.system(f'python schnet_test.py --h {ch} --i {interactions}')
+        with open('zeonet_train.sh', 'r') as file:
+            lines = file.readlines()
 
-
+            for j in range(len(lines)):
+                if lines[j].startswith('python schnet_test.py'):
+                    lines[j] = f'python schnet_test.py --h {ch} --i {interactions}\n'
+        os.system(f'sbatch -p all --gres=gpu:1 zeonet_train.sh')

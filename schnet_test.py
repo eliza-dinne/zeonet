@@ -35,8 +35,8 @@ if __name__ == "__main__": #if file called, code below is executed
     #graph list creation
     graphs = []
 
-    #'TON2', 'TONch', 'MEL', 'DDR', 'FAU', 'FAUch', 'ITW', 'MFI', 'MOR', 'RHO'
-    for zeo in ['MFI']:
+    #'TON', 'TON2', 'TONch', 'MEL', 'DDR', 'FAU', 'FAUch', 'ITW', 'MFI', 'MOR', 'RHO'
+    for zeo in ['TON', 'TON2']:
         _graphs = create_graphs(zeo, triplets=False)
         graphs.extend(_graphs)
 
@@ -61,11 +61,11 @@ if __name__ == "__main__": #if file called, code below is executed
     te_loss = []
 
 
-    for epoch in range(epochs):
+    for epoch in tqdm(range(epochs)):
 
         net.train()
         running_loss = 0.0
-        for i, data in tqdm(enumerate(trainloader)): #move tqdm to the outer for loop
+        for i, data in tqdm(enumerate(trainloader)):
 
             optimizer.zero_grad() #clear gradients
             
@@ -80,7 +80,7 @@ if __name__ == "__main__": #if file called, code below is executed
             tr_loss.append(loss.item())
         
 
-        print(f'Epoch {epoch+1} loss: {running_loss/(i+1)}')
+        #print(f'Epoch {epoch+1} loss: {running_loss/(i+1)}')
 
         #test
         net.eval()
@@ -95,9 +95,11 @@ if __name__ == "__main__": #if file called, code below is executed
             running_loss_test += loss.item()
             te_loss.append(loss.item())
 
-        print(f'Epoch {epoch+1} test loss: {running_loss_test/(i+1)}')
+        test_loss = running_loss_test/(i+1)
+        #print(f'Epoch {epoch+1} test loss: {running_loss_test/(i+1)}')
 
-    existing_folders = os.listdir('/workspaces/zeonet-bep/saved_results')
+    current_dir = os.getcwd()
+    existing_folders = os.listdir(f'{current_dir}/saved_results/')
     existing_folders = [int(i) for i in existing_folders]
 
     if len(existing_folders) == 0:
@@ -105,11 +107,12 @@ if __name__ == "__main__": #if file called, code below is executed
     else:
         next_dir = max(existing_folders) + 1
 
-    os.makedirs(f'/Users/elizadinne/Desktop/uni/Physics_BEP/zeonet-bep/saved_results/{next_dir}/')
-    torch.save(net.state_dict(), f'/Users/elizadinne/Desktop/uni/Physics_BEP/zeonet-bep/saved_results/{next_dir}/state_dict.py')
-    with open(f'/Users/elizadinne/Desktop/uni/Physics_BEP/zeonet-bep/saved_results/{next_dir}/param_dict.pkl', 'wb') as f:
+    os.makedirs(f'{current_dir}/saved_results/{next_dir}/')
+    torch.save(net.state_dict(), f'{current_dir}/saved_results/{next_dir}/state_dict.py')
+    with open(f'{current_dir}/saved_results/{next_dir}/param_dict.pkl', 'wb') as f:
         pickle.dump(d1, f)
 
+    print(f'Hidden channels: {args.h}, interaction blocks: {args.i}, final test loss: {test_loss}')
 
     #pred, true, zeos = predict(trainloader, net)
     #mae = np.abs(true - pred)
