@@ -4,6 +4,7 @@ import numpy as np
 from torch_geometric.typing import OptTensor, SparseTensor
 from torch_geometric.data import Data
 from torch_geometric.loader import DataLoader
+import os
 
 def get_tensor(file):
     return torch.tensor(np.load(file))
@@ -215,7 +216,8 @@ def create_graphs(zeo : str = 'TON', triplets : bool = False):
 
     graphs = []
     
-    zeopath = f'/workspaces/zeonet-bep/Data/{zeo}'
+    current_dir = os.getcwd()
+    zeopath = f'{current_dir}/Data/{zeo}'
     
     # you might need to create these files before running
     X = get_tensor(f'{zeopath}/X.npy')

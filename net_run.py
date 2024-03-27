@@ -6,8 +6,8 @@ import os
 #alignn 2,4,6 layers
 #cgcn same nr of primary layers, 0 alignn
 
-for ch in [32]: #32, 64, 128, 256
-    for interactions in [2]: #2, 4, 6
+for ch in [32, 64, 128, 256]:
+    for interactions in [2, 4, 6]:
         with open('zeonet_train.sh', 'r') as file:
             lines = file.readlines()
 
