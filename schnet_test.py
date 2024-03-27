@@ -30,6 +30,8 @@ if __name__ == "__main__": #if file called, code below is executed
 
     print(DEVICE)
 
+    print(f'Hidden channels: {args.h}, interaction blocks: {args.i}')
+
     d1 = {'hidden_channels': args.h, 'num_filters': args.h, 'num_interactions': args.i}
 
     #graph list creation
@@ -65,7 +67,7 @@ if __name__ == "__main__": #if file called, code below is executed
 
         net.train()
         running_loss = 0.0
-        for i, data in tqdm(enumerate(trainloader)):
+        for i, data in enumerate(trainloader):
 
             optimizer.zero_grad() #clear gradients
             
@@ -80,7 +82,7 @@ if __name__ == "__main__": #if file called, code below is executed
             tr_loss.append(loss.item())
         
 
-        #print(f'Epoch {epoch+1} loss: {running_loss/(i+1)}')
+        print(f'Epoch {epoch+1} loss: {running_loss/(i+1)}')
 
         #test
         net.eval()
@@ -96,7 +98,7 @@ if __name__ == "__main__": #if file called, code below is executed
             te_loss.append(loss.item())
 
         test_loss = running_loss_test/(i+1)
-        #print(f'Epoch {epoch+1} test loss: {running_loss_test/(i+1)}')
+        print(f'Epoch {epoch+1} test loss: {running_loss_test/(i+1)}')
 
     current_dir = os.getcwd()
     existing_folders = os.listdir(f'{current_dir}/saved_results/')
@@ -111,8 +113,6 @@ if __name__ == "__main__": #if file called, code below is executed
     torch.save(net.state_dict(), f'{current_dir}/saved_results/{next_dir}/state_dict.py')
     with open(f'{current_dir}/saved_results/{next_dir}/param_dict.pkl', 'wb') as f:
         pickle.dump(d1, f)
-
-    print(f'Hidden channels: {args.h}, interaction blocks: {args.i}, final test loss: {test_loss}')
 
     #pred, true, zeos = predict(trainloader, net)
     #mae = np.abs(true - pred)
