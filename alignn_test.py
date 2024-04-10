@@ -7,6 +7,7 @@ from torch_geometric.typing import OptTensor, SparseTensor
 from torch_geometric.data import Data
 from torch_geometric.loader import DataLoader
 import torch.optim as optim 
+from torch_sparse import SparseTensor
 from tqdm import tqdm
 from numpy import save
 

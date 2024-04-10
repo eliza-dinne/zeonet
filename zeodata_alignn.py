@@ -1,9 +1,10 @@
 import torch
 from torch import Tensor
 import numpy as np
-from torch_geometric.typing import OptTensor, SparseTensor
+from torch_geometric.typing import OptTensor
 from torch_geometric.data import Data
 from torch_geometric.loader import DataLoader
+from torch_sparse import SparseTensor
 import os
 
 def get_tensor(file):
