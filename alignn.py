@@ -130,7 +130,7 @@ class ALIGNN(nn.Module):
     
 
     def forward(self, x, edge_index, edge_index_triplets, dist, angle, batch):
-        print("x:",x.shape, "edge_index:", edge_index.shape, "edge_index_triplets", edge_index_triplets.shape, "dist:", dist.shape, "angle", angle.shape)  
+        #print("x:",x.shape, "edge_index:", edge_index.shape, "edge_index_triplets", edge_index_triplets.shape, "dist:", dist.shape, "angle", angle.shape)  
         x = self.atom_embedding(x)
         y = self.edge_embedding(dist)
         z = self.angle_embedding(angle)
