@@ -217,7 +217,8 @@ def create_graphs(zeo : str = 'TON', triplets : bool = False):
 
     graphs = []
     
-    zeopath = f'/Users/elizadinne/Desktop/uni/Physics_BEP/nn/Data/{zeo}'
+    current_dir = os.getcwd()
+    zeopath = f'{current_dir}/Data/{zeo}'
     
     # you might need to create these files before running
     X = get_tensor(f'{zeopath}/X.npy')
