@@ -33,7 +33,7 @@ if __name__ == "__main__": #if file called, code below is executed
 
     print(f'Alignn layers: {args.a}, Embedding features: {args.e}')
 
-    d1 = {'a_layers': args.a, 'embedding_features': args.i}
+    d1 = {'a_layers': args.a, 'embedding_features': args.e}
 
     #graph list creation
     graphs = []
