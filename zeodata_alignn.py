@@ -4,6 +4,7 @@ import numpy as np
 from torch_geometric.typing import OptTensor, SparseTensor
 from torch_geometric.data import Data
 from torch_geometric.loader import DataLoader
+import os
 
 def get_tensor(file):
     return torch.tensor(np.load(file))
