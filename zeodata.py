@@ -257,7 +257,7 @@ def create_graphs(zeo : str = 'TON', triplets : bool = False):
             data = ZeoData(x=atoms[i], edge_index=edge_index, edge_attr=dists.unsqueeze(1), 
                         idx_i_1=idx_i_1, idx_j_1=idx_j_1, idx_k_1=idx_k_1, idx_kj_1=idx_kj_1, idx_ji_1=idx_ji_1, angle=angle, y=y[i])
         else:
-            data = Data(x=atoms[i], edge_index=edge_index, edge_attr=dists.unsqueeze(1), y=y[i])
+            data = Data(x=atoms[i], zeo=zeo, edge_index=edge_index, edge_attr=dists.unsqueeze(1), y=y[i])
 
         graphs.append(data)
 
