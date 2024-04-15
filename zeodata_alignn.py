@@ -257,7 +257,7 @@ def create_graphs(zeo : str = 'TON', triplets : bool = False):
 
         if triplets:
             # we might not need all the indexing, check later
-            data = ZeoData(x=atoms[i], edge_index=edge_index, edge_attr=dists.unsqueeze(1),
+            data = ZeoData(x=atoms[i], zeo=zeo, edge_index=edge_index, edge_attr=dists.unsqueeze(1),
                             edge_index_triplets=edge_index_triplets, angle=angle.unsqueeze(1), y=y[i])
         else:
             data = Data(x=atoms[i], edge_index=edge_index, edge_attr=dists.unsqueeze(1), y=y[i])
@@ -294,19 +294,3 @@ def unpack_batch(batch, device : str = 'cpu'):
  
     return (x, edge_index, edge_index_triplets, dist, angle, y, btch)
 
-
-@torch.no_grad()
-def predict(dataloader, model):
-    DEVICE = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
-    model.eval()
-    preds = []
-    trues = []
-    #zeos = []
-    for i, data in enumerate(dataloader):
-        
-        x, edge_index, edge_attr, y, batch = unpack_batch(data, DEVICE)
-        out = model(x, edge_index, edge_attr, batch).squeeze()
-        preds.append(out.cpu().numpy())
-        trues.append(y.cpu().numpy())
-        #zeos.extend(data.zeo)
-    return np.concatenate(preds), np.concatenate(trues), None #np.array(zeos)
