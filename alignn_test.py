@@ -39,8 +39,8 @@ if __name__ == "__main__": #if file called, code below is executed
     #graph list creation
     graphs = []
 
-    #'TON', 'TON2', 'TON3', 'TONch', 'MEL', 'MELch', 'DDR', 'DDRch1', 'DDRch2', 'FAU', 'FAUch', 'ITW', 'MFI', 'MOR', 'RHO'
-    for zeo in ['TON', 'TON2', 'TON3', 'TONch', 'MEL', 'MELch', 'DDR', 'DDRch1', 'DDRch2', 'FAU', 'FAUch', 'ITW', 'MFI', 'MOR', 'RHO']:
+    #'TON', 'TON2', 'TON3', 'TON4', 'TONch', 'MEL', 'MELch', 'DDR', 'DDRch1', 'DDRch2', 'FAU', 'FAUch', 'ITW', 'MFI', 'MOR', 'RHO'
+    for zeo in ['TON', 'TON2', 'TON3', 'TON4', 'TONch', 'MEL', 'MELch', 'DDR', 'DDRch1', 'DDRch2', 'FAU', 'FAUch', 'ITW', 'MFI', 'MOR', 'RHO']:
         _graphs = create_graphs(zeo, triplets=True)
         graphs.extend(_graphs)
 
