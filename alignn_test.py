@@ -24,8 +24,7 @@ if __name__ == "__main__": #if file called, code below is executed
     
     parser.add_argument("--a", help="alignn layers",type=int, default=0)
     parser.add_argument("--h", help="hidden features",type=int, default=64)
-    #more inputs can be added
-    #possibly also the model
+
     args = parser.parse_args()
 
     DEVICE = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
