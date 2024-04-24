@@ -104,7 +104,6 @@ if __name__ == "__main__": #if file called, code below is executed
 
     current_dir = os.getcwd()
     existing_folders = os.listdir(f'{current_dir}/saved_results/')
-    #existing_folders = [int(i) for i in existing_folders]
 
     if len(existing_folders) == 1:
         next_dir = 0
@@ -116,8 +115,3 @@ if __name__ == "__main__": #if file called, code below is executed
     with open(f'{current_dir}/saved_results/{next_dir}/param_dict.pkl', 'wb') as f:
         pickle.dump(d1, f)
 
-    #pred, true, zeos = predict(trainloader, net)
-    #mae = np.abs(true - pred)
-    #mse = ((true -pred)**2)
-
-    #print(f'Overal: MAE: {mae.mean()} MSE: {mse.mean()}')
