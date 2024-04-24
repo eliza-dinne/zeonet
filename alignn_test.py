@@ -23,7 +23,7 @@ if __name__ == "__main__": #if file called, code below is executed
     parser = argparse.ArgumentParser()
     
     parser.add_argument("--a", help="alignn layers",type=int, default=0)
-    parser.add_argument("--e", help="embedding features",type=int, default=64)
+    parser.add_argument("--h", help="hidden features",type=int, default=64)
     #more inputs can be added
     #possibly also the model
     args = parser.parse_args()
@@ -32,9 +32,9 @@ if __name__ == "__main__": #if file called, code below is executed
 
     print(DEVICE)
 
-    print(f'Alignn layers: {args.a}, Embedding features: {args.e}')
+    print(f'Alignn layers: {args.a}, Embedding features: {args.h}')
 
-    d1 = {'a_layers': args.a, 'embedding_features': args.e}
+    d1 = {'a_layers': args.a, 'hidden_features': args.h}
 
     #graph list creation
     graphs = []
